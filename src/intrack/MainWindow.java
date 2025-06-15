@@ -3,7 +3,7 @@ package intrack;
 
 /**
  *
- * @author Lenovo Flex 5
+ * @author jinvkyen
  */
 public class MainWindow extends javax.swing.JFrame {
     

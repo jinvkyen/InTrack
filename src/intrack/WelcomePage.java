@@ -2,11 +2,6 @@
 package intrack;
 
 
-/**
- *
- * @author jinvkyen
- */
-
 public class WelcomePage extends javax.swing.JPanel {
     private MainWindow window;
 
