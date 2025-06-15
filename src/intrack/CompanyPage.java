@@ -3,11 +3,15 @@ package intrack;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+
 
 public class CompanyPage extends javax.swing.JPanel {
 
     private MainWindow window;
     DefaultTableModel companyTableModel;
+    Connection conn = DB.connect();
+
 
     
     public CompanyPage(MainWindow aThis) {
@@ -196,30 +200,59 @@ public class CompanyPage extends javax.swing.JPanel {
     }//GEN-LAST:event_GoToDashboardActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        try (var stmt = conn.createStatement();
+        var rs = stmt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='company'")) {
+
+           if (rs.next()) {
+               System.out.println("Table 'company' exists.");
+           } else {
+               System.out.println("Table 'company' DOES NOT exist.");
+           }
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+        
         String cname = Name.getText().trim();
         String clocation = Location.getText().trim();
         String cdate = ApplicationDate.getText().trim();
         String chours = RequiredHours.getText().trim();
         
-        if (cname.isEmpty() || clocation.isEmpty() || cdate.isEmpty() || chours.isEmpty()) {
+        if (cname.isEmpty() || cdate.isEmpty() || chours.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.");
             return;
         }
         
-        try{
-            Integer.parseInt(chours);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Required Hours must be a number.");
-            return;
+         int hours;
+            try {
+                hours = Integer.parseInt(chours);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Required Hours must be a number.");
+                return;
+            }
+            
+            try (Connection conn = DB.connect()) {
+            String sql = "INSERT INTO company(name, location, application_date, required_hours) VALUES (?, ?, ?, ?)";
+            var pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, cname);
+            pstmt.setString(2, clocation);
+            pstmt.setString(3, cdate);
+            pstmt.setInt(4, hours);
+            pstmt.executeUpdate();
+
+            // add to table display
+            companyTableModel.addRow(new Object[]{cname, clocation, cdate, hours});
+
+            // clear fields
+            Name.setText("");
+            Location.setText("");
+            ApplicationDate.setText("");
+            RequiredHours.setText("");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error inserting company data.");
         }
-        
-        companyTableModel.addRow(new Object[]{cname, clocation, cdate, chours});
-        
-//        clears texts
-        Name.setText("");
-        Location.setText("");
-        ApplicationDate.setText("");
-        RequiredHours.setText("");
         
     }//GEN-LAST:event_addButtonActionPerformed
 
