@@ -32,5 +32,4 @@ lib/
 
 build.xml
 manifest.mf
-src/intrack/DB.java
-src/intrack/CompanyPage.java
+src/intrack/*.java
