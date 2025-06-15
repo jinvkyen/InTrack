@@ -17,6 +17,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     mainPanel.add(new WelcomePage(this), "welcome");
     mainPanel.add(new DashboardPage(this), "dashboard");
+    mainPanel.add(new CompanyPage(this), "company");
 
     ((java.awt.CardLayout) mainPanel.getLayout()).show(mainPanel, "welcome");
     }

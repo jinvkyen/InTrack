@@ -69,7 +69,7 @@ public class WelcomePage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(268, 268, 268)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(proceedWithout, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(proceedWithout, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -96,7 +96,7 @@ public class WelcomePage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void proceedWithoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proceedWithoutActionPerformed
-        proceedWithout.addActionListener(e -> window.showPage("dashboard"));
+        proceedWithout.addActionListener(e -> window.showPage("company"));
     }//GEN-LAST:event_proceedWithoutActionPerformed
 
 
