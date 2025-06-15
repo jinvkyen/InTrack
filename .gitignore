@@ -1,0 +1,34 @@
+# Ignore NetBeans specific files
+nbproject/
+build/
+dist/
+.nb-gradle/
+
+# Ignore compiled Java class files
+*.class
+
+# Ignore logs and generated files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore SQLite DB file
+*.sqlite
+*.db
+
+# Ignore IDE files
+*.iml
+.idea/
+
+# Ignore JAR libraries
+lib/
+*.jar
+
+# Ignore backup files
+*~
+*.bak
+
+build.xml
+manifest.mf
