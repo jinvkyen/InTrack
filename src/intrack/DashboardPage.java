@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import intrack.ExportToFile;
 
 public class DashboardPage extends javax.swing.JPanel {
     private MainWindow window;
@@ -75,6 +76,7 @@ public class DashboardPage extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         BackToComp = new javax.swing.JButton();
         Hours = new javax.swing.JComboBox<>();
+        ToCSVButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(880, 580));
 
@@ -188,6 +190,20 @@ public class DashboardPage extends javax.swing.JPanel {
             }
         });
 
+        ToCSVButton.setBackground(new java.awt.Color(255, 51, 51));
+        ToCSVButton.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
+        ToCSVButton.setForeground(new java.awt.Color(255, 255, 255));
+        ToCSVButton.setText("Export to .CSV");
+        ToCSVButton.setToolTipText("");
+        ToCSVButton.setBorderPainted(false);
+        ToCSVButton.setDefaultCapable(false);
+        ToCSVButton.setRequestFocusEnabled(false);
+        ToCSVButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToCSVButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,12 +211,6 @@ public class DashboardPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BackToComp, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +226,15 @@ public class DashboardPage extends javax.swing.JPanel {
                                 .addComponent(Task, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BackToComp, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ToCSVButton, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +261,9 @@ public class DashboardPage extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BackToComp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackToComp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ToCSVButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -294,6 +314,10 @@ public class DashboardPage extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void ToCSVButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToCSVButtonActionPerformed
+        ExportToFile.export(ProgressTable, "progress_data.csv");
+    }//GEN-LAST:event_ToCSVButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToComp;
@@ -301,6 +325,7 @@ public class DashboardPage extends javax.swing.JPanel {
     private javax.swing.JTable ProgressTable;
     private javax.swing.JTextField Role;
     private javax.swing.JTextField Task;
+    private javax.swing.JButton ToCSVButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
