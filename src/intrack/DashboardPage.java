@@ -1,6 +1,7 @@
 
 package intrack;
 
+import intrack.DB;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -58,6 +59,11 @@ public class DashboardPage extends javax.swing.JPanel {
     }
     
     
+    private void updateProgressBar(){
+        
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,7 +80,7 @@ public class DashboardPage extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         ProgressBar = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        ProgressLabel = new javax.swing.JLabel();
         BackToComp = new javax.swing.JButton();
         Hours = new javax.swing.JComboBox<>();
         ToCSVButton = new javax.swing.JButton();
@@ -152,9 +158,9 @@ public class DashboardPage extends javax.swing.JPanel {
         jLabel1.setForeground(java.awt.SystemColor.controlDkShadow);
         jLabel1.setText("Total completed Hours:");
 
-        jLabel8.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
-        jLabel8.setForeground(java.awt.SystemColor.controlDkShadow);
-        jLabel8.setText("0% out of 100%");
+        ProgressLabel.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
+        ProgressLabel.setForeground(java.awt.SystemColor.controlDkShadow);
+        ProgressLabel.setText("0% out of 100%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,7 +172,7 @@ public class DashboardPage extends javax.swing.JPanel {
                         .addGap(117, 117, 117)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8))
+                        .addComponent(ProgressLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -180,7 +186,7 @@ public class DashboardPage extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel8))
+                    .addComponent(ProgressLabel))
                 .addGap(62, 62, 62))
         );
 
@@ -341,6 +347,7 @@ public class DashboardPage extends javax.swing.JPanel {
     private javax.swing.JButton BackToComp;
     private javax.swing.JComboBox<String> Hours;
     private javax.swing.JProgressBar ProgressBar;
+    private javax.swing.JLabel ProgressLabel;
     private javax.swing.JTable ProgressTable;
     private javax.swing.JTextField Role;
     private javax.swing.JTextField Task;
@@ -351,8 +358,11 @@ public class DashboardPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private int getSelectedCompanyId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

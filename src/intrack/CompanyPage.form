@@ -34,28 +34,29 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="addButton" min="-2" pref="130" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
-                                          <Component id="name" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                                          <Component id="Name" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <EmptySpace min="94" pref="94" max="-2" attributes="0"/>
-                                          <Component id="date" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                          <Component id="ApplicationDate" min="-2" pref="210" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
-                                          <Component id="location" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
-                                          <Component id="Location" min="-2" pref="210" max="-2" attributes="0"/>
-                                          <EmptySpace min="94" pref="94" max="-2" attributes="0"/>
-                                          <Component id="hours" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                                          <Component id="RequiredHours" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="addButton" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="name" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                                              <Component id="Name" min="-2" pref="210" max="-2" attributes="0"/>
+                                              <EmptySpace min="94" pref="94" max="-2" attributes="0"/>
+                                              <Component id="date" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                              <Component id="ApplicationDate" min="-2" pref="210" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="location" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
+                                              <Component id="Location" min="-2" pref="210" max="-2" attributes="0"/>
+                                              <EmptySpace min="94" pref="94" max="-2" attributes="0"/>
+                                              <Component id="hours" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                              <Component id="RequiredHours" min="-2" pref="210" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
