@@ -7,8 +7,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import intrack.ExportToFile;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class DashboardPage extends javax.swing.JPanel {
+public final class DashboardPage extends javax.swing.JPanel {
     private MainWindow window;
     
     Connection conn = DB.connect();
@@ -32,6 +35,9 @@ public class DashboardPage extends javax.swing.JPanel {
         
         // load progress data
         loadProgressTableData();
+        
+        //load progress bar
+        updateProgressUI();
     }
     
     private void loadProgressTableData() {
@@ -58,9 +64,43 @@ public class DashboardPage extends javax.swing.JPanel {
              
     }
     
-    
-    private void updateProgressBar(){
-        
+    public void updateProgressUI() {
+        int requiredHours = 0;
+        int completedHours = 0;
+
+        // Get required hours (from the first company row)
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:intrack.db")) {
+            String query = "SELECT required_hours FROM company LIMIT 1";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                requiredHours = rs.getInt("required_hours");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Get total progress hours
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:intrack.db")) {
+            String query = "SELECT SUM(hours) as total FROM progress";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                completedHours = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Update the progress bar and label
+        if (requiredHours > 0) {
+            int percentage = (int) ((completedHours * 100.0) / requiredHours);
+            ProgressBar.setValue(percentage);
+            ProgressLabel.setText(percentage + "% completed (" + completedHours + "/" + requiredHours + " hours)");
+        } else {
+            ProgressBar.setValue(0);
+            ProgressLabel.setText("No required hours set.");
+        }
     }
     
     
@@ -79,7 +119,6 @@ public class DashboardPage extends javax.swing.JPanel {
         ProgressTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         ProgressBar = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
         ProgressLabel = new javax.swing.JLabel();
         BackToComp = new javax.swing.JButton();
         Hours = new javax.swing.JComboBox<>();
@@ -154,13 +193,9 @@ public class DashboardPage extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
-        jLabel1.setForeground(java.awt.SystemColor.controlDkShadow);
-        jLabel1.setText("Total completed Hours:");
-
         ProgressLabel.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
         ProgressLabel.setForeground(java.awt.SystemColor.controlDkShadow);
-        ProgressLabel.setText("0% out of 100%");
+        ProgressLabel.setText("0%  completed out of 100%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,13 +204,11 @@ public class DashboardPage extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ProgressLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(ProgressLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -184,9 +217,7 @@ public class DashboardPage extends javax.swing.JPanel {
                 .addContainerGap(94, Short.MAX_VALUE)
                 .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(ProgressLabel))
+                .addComponent(ProgressLabel)
                 .addGap(62, 62, 62))
         );
 
@@ -203,7 +234,6 @@ public class DashboardPage extends javax.swing.JPanel {
             }
         });
 
-        Hours.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         Hours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HoursActionPerformed(evt);
@@ -353,7 +383,6 @@ public class DashboardPage extends javax.swing.JPanel {
     private javax.swing.JTextField Task;
     private javax.swing.JButton ToCSVButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
