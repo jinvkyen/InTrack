@@ -72,8 +72,9 @@ public class DashboardPage extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         ProgressTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        ProgressBar = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         BackToComp = new javax.swing.JButton();
         Hours = new javax.swing.JComboBox<>();
         ToCSVButton = new javax.swing.JButton();
@@ -137,36 +138,49 @@ public class DashboardPage extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jProgressBar1.setBackground(new java.awt.Color(242, 242, 242));
-        jProgressBar1.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
-        jProgressBar1.setForeground(new java.awt.Color(102, 255, 0));
-        jProgressBar1.setToolTipText("progress bar");
+        ProgressBar.setBackground(new java.awt.Color(242, 242, 242));
+        ProgressBar.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
+        ProgressBar.setForeground(new java.awt.Color(102, 255, 0));
+        ProgressBar.setToolTipText("progress bar");
+        ProgressBar.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ProgressBarStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
         jLabel1.setForeground(java.awt.SystemColor.controlDkShadow);
         jLabel1.setText("Total completed Hours:");
+
+        jLabel8.setFont(new java.awt.Font("SF Compact Display", 0, 12)); // NOI18N
+        jLabel8.setForeground(java.awt.SystemColor.controlDkShadow);
+        jLabel8.setText("0% out of 100%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
                         .addComponent(jLabel1)
-                        .addGap(172, 172, 172))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8))
                 .addGap(62, 62, 62))
         );
 
@@ -318,10 +332,15 @@ public class DashboardPage extends javax.swing.JPanel {
         ExportToFile.export(ProgressTable, "progress_data.csv");
     }//GEN-LAST:event_ToCSVButtonActionPerformed
 
+    private void ProgressBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ProgressBarStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProgressBarStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackToComp;
     private javax.swing.JComboBox<String> Hours;
+    private javax.swing.JProgressBar ProgressBar;
     private javax.swing.JTable ProgressTable;
     private javax.swing.JTextField Role;
     private javax.swing.JTextField Task;
@@ -332,8 +351,8 @@ public class DashboardPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
