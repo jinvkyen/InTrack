@@ -48,7 +48,7 @@ InTrack is a lightweight and user-friendly **Java Swing** desktop application de
 ![image](https://github.com/user-attachments/assets/b3dc9ecf-29d3-4622-b463-68289508a78b)
 
 ## Official Website
-checkout the official website here: 
+checkout the official website here: https://intrackapp.vercel.app/
 
 ## Credits
 - Developed by jinvkyen as part of a software development training project to explore Java desktop applications with database integration.
